@@ -32,7 +32,7 @@ try:
         LD_LIBRARY_PATH = os.environ.get('LD_LIBRARY_PATH', '')
         LD_LIBRARY_PATH = "%s:libs/%s" %(LD_LIBRARY_PATH, platform)
         os.environ['LD_LIBRARY_PATH'] = LD_LIBRARY_PATH
-        print "LD_LIBRARY_PATH =", LD_LIBRARY_PATH
+        print("LD_LIBRARY_PATH = %s" % (LD_LIBRARY_PATH))
 except KeyError:
     print 'You must specify a "platform"'
     sys.exit(2)
