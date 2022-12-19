@@ -38,7 +38,11 @@ pushd "$JSONCPP_SOURCE_DIR"
         windows*)
             load_vsvars
 
-            build_sln "./makefiles/vs$AUTOBUILD_VSVER/jsoncpp.sln" "Release|$AUTOBUILD_WIN_VSPLATFORM"
+            msbuild.exe \
+                -p:Configuration=Release \
+                -p:Platform=$AUTOBUILD_WIN_VSPLATFORM \
+                -p:PlatformToolset=v143 \
+                "./makefiles/vs$AUTOBUILD_VSVER/jsoncpp.sln"
 
             mkdir --parents "$stage/lib/release"
             mkdir --parents "$stage/include/json"
