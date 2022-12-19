@@ -67,7 +67,8 @@ pushd "$JSONCPP_SOURCE_DIR"
         linux*)
             export CCFLAGS="-m$AUTOBUILD_ADDRSIZE $LL_BUILD_RELEASE"
             export CXXFLAGS="$CCFLAGS"
-            ./scons.py platform=linux-gcc
+            pip install SCons
+            scons platform=linux-gcc
 
             mkdir -p "$stage/lib/release"
             mkdir -p "$stage/include/json"
