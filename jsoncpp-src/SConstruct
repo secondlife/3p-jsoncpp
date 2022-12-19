@@ -25,7 +25,7 @@ try:
     platform = ARGUMENTS['platform']
     if platform == 'linux-gcc':
         import subprocess
-        version = subprocess.check_output("g++ -dumpversion", shell=True)
+        version = subprocess.check_output("g++ -dumpversion", shell=True).decode(sys.stdout.encoding).replace("\n","")
         platform = 'linux-gcc-%s' %version
         print("Using platform '%s'" % (platform))
         LD_LIBRARY_PATH = os.environ.get('LD_LIBRARY_PATH', '')
