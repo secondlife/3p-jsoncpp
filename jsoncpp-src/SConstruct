@@ -154,7 +154,7 @@ if 'TarGz' in env['BUILDERS']:
 		def __init__( self, env ):
 			self.env = env
 		def __call__( self, *args, **kw ):
-                        args = (self.env['SRCDIST_TARGET'],) + args
+			args = (self.env['SRCDIST_TARGET'],) + args
 			self.env.SrcDist( *args, **kw )
 	env['SRCDIST_BUILDER'] = env.TarGz
 else: # If tarfile module is missing
