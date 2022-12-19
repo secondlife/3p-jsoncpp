@@ -92,13 +92,13 @@
     <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>../../build/vs150/debug/lib_json\</OutDir>
-    <IntDir>../../build/vs150/debug/lib_json\</IntDir>
+    <OutDir>../../build/vs170/debug/lib_json\</OutDir>
+    <IntDir>../../build/vs170/debug/lib_json\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>../../build/vs150/release/lib_json\</OutDir>
-    <IntDir>../../build/vs150/release/lib_json\</IntDir>
+    <OutDir>../../build/vs170/release/lib_json\</OutDir>
+    <IntDir>../../build/vs170/release/lib_json\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dummy|Win32'">
