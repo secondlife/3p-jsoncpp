@@ -24,9 +24,8 @@ options.Add( EnumVariable('platform',
 try:
     platform = ARGUMENTS['platform']
     if platform == 'linux-gcc':
-        CXX = 'g++'
-        import commands
-        version = commands.getoutput('%s -dumpversion' %CXX)
+        import subprocess
+        version = subprocess.check_output("g++ -dumpversion", shell=True)
         platform = 'linux-gcc-%s' %version
         print("Using platform '%s'" % (platform))
         LD_LIBRARY_PATH = os.environ.get('LD_LIBRARY_PATH', '')
