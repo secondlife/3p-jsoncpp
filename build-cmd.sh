@@ -57,7 +57,8 @@ pushd "$JSONCPP_SOURCE_DIR"
         darwin*)
             export CCFLAGS="-arch $AUTOBUILD_CONFIGURE_ARCH $LL_BUILD_RELEASE"
             export CXXFLAGS="$CCFLAGS"
-            ./scons.py platform=darwin
+            pip install SCons
+            scons platform=darwin
 
             mkdir -p "$stage/lib/release"
             mkdir -p "$stage/include/json"
