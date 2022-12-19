@@ -28,7 +28,7 @@ try:
         import commands
         version = commands.getoutput('%s -dumpversion' %CXX)
         platform = 'linux-gcc-%s' %version
-        print "Using platform '%s'" %platform
+        print("Using platform '%s'" % (platform))
         LD_LIBRARY_PATH = os.environ.get('LD_LIBRARY_PATH', '')
         LD_LIBRARY_PATH = "%s:libs/%s" %(LD_LIBRARY_PATH, platform)
         os.environ['LD_LIBRARY_PATH'] = LD_LIBRARY_PATH
@@ -37,7 +37,7 @@ except KeyError:
     print 'You must specify a "platform"'
     sys.exit(2)
 
-print "Building using PLATFORM =", platform
+print("Building using PLATFORM = %s" % (platform))
 
 rootbuild_dir = Dir('#buildscons')
 build_dir = os.path.join( '#buildscons', platform )
