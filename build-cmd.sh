@@ -38,7 +38,11 @@ pushd "$JSONCPP_SOURCE_DIR"
         windows*)
             load_vsvars
 
-            build_sln "./makefiles/vs$AUTOBUILD_VSVER/jsoncpp.sln" "Release|$AUTOBUILD_WIN_VSPLATFORM"
+            msbuild.exe \
+                -p:Configuration=Release \
+                -p:Platform=$AUTOBUILD_WIN_VSPLATFORM \
+                -p:PlatformToolset=v143 \
+                "./makefiles/vs$AUTOBUILD_VSVER/jsoncpp.sln"
 
             mkdir --parents "$stage/lib/release"
             mkdir --parents "$stage/include/json"
@@ -53,7 +57,8 @@ pushd "$JSONCPP_SOURCE_DIR"
         darwin*)
             export CCFLAGS="-arch $AUTOBUILD_CONFIGURE_ARCH $LL_BUILD_RELEASE"
             export CXXFLAGS="$CCFLAGS"
-            ./scons.py platform=darwin
+            pip install SCons
+            scons platform=darwin
 
             mkdir -p "$stage/lib/release"
             mkdir -p "$stage/include/json"
@@ -63,7 +68,8 @@ pushd "$JSONCPP_SOURCE_DIR"
         linux*)
             export CCFLAGS="-m$AUTOBUILD_ADDRSIZE $LL_BUILD_RELEASE"
             export CXXFLAGS="$CCFLAGS"
-            ./scons.py platform=linux-gcc
+            pip install SCons
+            scons platform=linux-gcc
 
             mkdir -p "$stage/lib/release"
             mkdir -p "$stage/include/json"

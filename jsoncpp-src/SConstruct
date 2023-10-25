@@ -24,20 +24,19 @@ options.Add( EnumVariable('platform',
 try:
     platform = ARGUMENTS['platform']
     if platform == 'linux-gcc':
-        CXX = 'g++'
-        import commands
-        version = commands.getoutput('%s -dumpversion' %CXX)
+        import subprocess
+        version = subprocess.check_output("g++ -dumpversion", shell=True).decode(sys.stdout.encoding).replace("\n","")
         platform = 'linux-gcc-%s' %version
-        print "Using platform '%s'" %platform
+        print("Using platform '%s'" % (platform))
         LD_LIBRARY_PATH = os.environ.get('LD_LIBRARY_PATH', '')
         LD_LIBRARY_PATH = "%s:libs/%s" %(LD_LIBRARY_PATH, platform)
         os.environ['LD_LIBRARY_PATH'] = LD_LIBRARY_PATH
-        print "LD_LIBRARY_PATH =", LD_LIBRARY_PATH
+        print("LD_LIBRARY_PATH = %s" % (LD_LIBRARY_PATH))
 except KeyError:
-    print 'You must specify a "platform"'
+    print('You must specify a "platform"')
     sys.exit(2)
 
-print "Building using PLATFORM =", platform
+print("Building using PLATFORM = %s" % (platform))
 
 rootbuild_dir = Dir('#buildscons')
 build_dir = os.path.join( '#buildscons', platform )
@@ -125,7 +124,7 @@ elif platform.startswith('darwin'):
     env.Append( LIBS = ['pthread'], CCFLAGS = os.environ["CCFLAGS"])
     env['SHARED_LIB_ENABLED'] = True
 else:
-    print "UNSUPPORTED PLATFORM."
+    print("UNSUPPORTED PLATFORM.")
     env.Exit(1)
 
 env.Tool('targz')
@@ -155,7 +154,8 @@ if 'TarGz' in env['BUILDERS']:
 		def __init__( self, env ):
 			self.env = env
 		def __call__( self, *args, **kw ):
-			apply( self.env.SrcDist, (self.env['SRCDIST_TARGET'],) + args, kw )
+			args = (self.env['SRCDIST_TARGET'],) + args
+			self.env.SrcDist( *args, **kw )
 	env['SRCDIST_BUILDER'] = env.TarGz
 else: # If tarfile module is missing
 	class SrcDistAdder:

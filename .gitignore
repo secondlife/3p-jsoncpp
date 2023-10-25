@@ -1,0 +1,6 @@
+jsoncpp-src/buildscons/
+jsoncpp-src/dist/
+jsoncpp-src/lib/
+jsoncpp-src/src/lib_json/*.a
+*.pyc
+*.o
