@@ -117,7 +117,7 @@ elif platform == 'mingw':
 elif platform.startswith('linux-gcc'):
     env.Tool( 'default' )
     env['CXX']='g++'
-    env.Append( LIBS = ['pthread'], CCFLAGS = "-Wall -m32", LINKFLAGS="-m32")
+    env.Append( LIBS = ['pthread'], CCFLAGS = "-Wall -m64", LINKFLAGS="-m64")
     env['SHARED_LIB_ENABLED'] = False
 elif platform.startswith('darwin'):
     env.Tool( 'default' )
